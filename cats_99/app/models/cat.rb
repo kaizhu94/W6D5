@@ -10,10 +10,19 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  description :text             not null
+
+require 'action_view'
 #
 class Cat < ApplicationRecord
+    include ActionView::Helpers::DateHelper
+
     COLORS = ["red", "blue", "yellow", "orange", "violet", "white", "black", "pink"]
     validates :birth_date, :name, :description, presence: true
     validates :sex, presence: true, inclusion: { in: ['M', 'F'],  as: :trigger, message: "can't be anything else than M and F"}
     validates :color, presence: true, inclusion: { in: COLORS,  as: :trigger, message: "can't be anything else than colors in the set"}
+
+    def age
+        time_ago_in_words(birth_date)
+    end
+
 end
