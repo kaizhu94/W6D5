@@ -4,4 +4,34 @@ class CatsController < ApplicationController
 
         render :index
     end 
+
+    def show
+
+        @cat = Cat.find(params[:id])
+
+        render :show
+
+    end
+
+    def new
+        @cat = Cat.new
+        p @cat
+        render :new
+    end
+
+    def create
+        cat = Cat.new(cat_params)
+        if cat.save
+            redirect_to cat_url(cat)
+        else
+            render json: cat.errors.full_messages, status: 422
+        end
+    end
+
+    private
+
+    def cat_params
+        params.require(:cat).permit(:birthday, :color, :name, :sex, :discription)
+    end
+
 end 

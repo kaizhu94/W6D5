@@ -1,0 +1,17 @@
+<h1> Create a New cat</h1>
+
+<form action="<%= cats_url %>" method = "POST">
+    <label for="cat_name">Name: </label>
+        <input id="cat_name" type="text" name="cat[name]" value="<%= @cat.name %>">
+    <label for="cat_birthdate">Birthdate: </label>
+        <input id="cat_birthdate" type="date" name="cat[birth_date]" value="<%= @cat.birth_date %>">
+    <label for="cat_color">Color: </label>
+        <select name="cat[color]" id="cat_color">
+        <option value="default" selected>     </option>
+            <% Cat::COLORS.each do |color|%>
+                <option value="#{color}"><%= color%></option>
+            <% end %>
+        </select>
+    <label for="cat_sex">Gender: </label>
+        <input id="cat_name" type="text" name="cat[name]" value="<%= @cat.name %>">
+</form>

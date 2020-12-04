@@ -16,7 +16,7 @@ require 'action_view'
 class Cat < ApplicationRecord
     include ActionView::Helpers::DateHelper
 
-    COLORS = ["red", "blue", "yellow", "orange", "violet", "white", "black", "pink"]
+    COLORS = ["Grey", "Orange", "Calico", "Black", "White"]
     validates :birth_date, :name, :description, presence: true
     validates :sex, presence: true, inclusion: { in: ['M', 'F'],  as: :trigger, message: "can't be anything else than M and F"}
     validates :color, presence: true, inclusion: { in: COLORS,  as: :trigger, message: "can't be anything else than colors in the set"}
