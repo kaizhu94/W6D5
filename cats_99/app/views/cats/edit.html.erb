@@ -1,6 +1,6 @@
-<h1> Create a New cat</h1>
+<h1> Edit a cat</h1>
 
-<form action="<%= cats_url %>" method = "POST">
+<form action="<%= cat_url %>" method = "POST">
 
     <label for="cat_name">Name: </label>
         <input id="cat_name" type="text" name="cat[name]" value="<%= @cat.name %>">
