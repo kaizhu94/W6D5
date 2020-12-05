@@ -38,7 +38,7 @@ class CatsController < ApplicationController
 
     def update
         @cat = Cat.find(params[:id])
-        if @cat.update(cat_params)
+        if @cat.update_attributes(cat_params)
             redirect_to cat_url(@cat)
         else
             flash.now[:errors] = @cat.errors.full_messages
