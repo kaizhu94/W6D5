@@ -1,0 +1,46 @@
+<%action = (cat.persisted? ? cat_url(cat) : cats_url) %>
+<%method = (cat.persisted? ? "PATCH" : "POST") %>
+
+<!--
+#Returns true if the record is persisted, i.e. it’s not a new record and it was not destroyed, otherwise returns false.
+# <%= cat_url(@cat) %> this is a prefix_url(instance) 
+# <input type="hidden" name="_method" value="PATCH"> is the syntax of  hidden method 
+# select or check of color and sex: this line is for the default from the origin data before editing
+-->
+
+<form action="<%= action %>" method = "POST">
+    <input type="hidden" name="_method" value=<%= method %>>
+
+    <label for="cat_name">Name: </label>
+        <input id="cat_name" type="text" name="cat[name]" value="<%= @cat.name %>">
+    <br>
+    <br>
+    <label for="cat_birthdate">Birth date: </label>
+        <input id="cat_birthdate" type="date" name="cat[birth_date]" value="<%= @cat.birth_date %>">
+    <br>
+    <br>
+    <label for="cat_color">Color: </label>
+        <select name="cat[color]" id="cat_color">
+        <option disable selected>-select a color</option>
+            <% Cat::COLORS.each do |color|%>
+                <option
+                    <%= @cat.color == color ? "selected" : "" %> 
+                    value="<%= color %>">
+                    <%= color %>
+            <% end %>
+        </select>
+    <br>
+    <br>
+
+    <input id="cat_sex_male" type="radio" name="cat[sex]" value="M"  <%= @cat.sex == "M" ? "checked" : "" %>>
+    <label for="cat_sex_male">Male</label>
+    <input id="cat_sex_female" type="radio" name="cat[sex]" value="F" <%= @cat.sex == "F" ? "checked" : "" %>>
+    <label for="cat_sex_female">Female</label>
+
+    <br>
+    <br>
+    <label for="cat_description">Cat Description: </label>
+        <textarea id="cat_description" name="cat[description]"<%= @cat.description %>></textarea>
+    <% submit_text = (cat.persisted? ? 'Edit' : 'Create') + ' a cat!'%>
+        <input type="submit" value="<%= submit_text %>">
+</form>

@@ -1,37 +1,4 @@
 <h1> Create a New cat</h1>
 
-<form action="<%= cats_url %>" method = "POST">
-
-    <label for="cat_name">Name: </label>
-        <input id="cat_name" type="text" name="cat[name]" value="<%= @cat.name %>">
-    <br>
-    <br>
-    <label for="cat_birthdate">Birth date: </label>
-        <input id="cat_birthdate" type="date" name="cat[birth_date]" value="<%= @cat.birth_date %>">
-    <br>
-    <br>
-    <label for="cat_color">Color: </label>
-        <select name="cat[color]" id="cat_color">
-        <option disable selected>-select a color</option>
-            <% Cat::COLORS.each do |color|%>
-                <option
-                    <%= @cat.color == color ? "selected" : ""%> 
-                    value="<%= color %>">
-                    <%= color %>
-            <% end %>
-        </select>
-    <br>
-    <br>
-
-    <input id="cat_sex_male" type="radio" name="cat[sex]" value="M"  <%= @cat.sex == "M" ? "checked" : "" %>>
-    <label for="cat_sex_male">Male</label>
-    <input id="cat_sex_female" type="radio" name="cat[sex]" value="F" <%= @cat.sex == "F" ? "checked" : "" %>>
-    <label for="cat_sex_female">Female</label>
-
-    <br>
-    <br>
-    <label for="cat_description">Cat Description: </label>
-        <textarea id="cat_description" name="cat[description]"<%= @cat.description %>></textarea>
-    <% submit_text = "Create a cat!"%>
-        <input type="submit" value="<%= submit_text %>">
-</form>
+<%= render 'shared/errors' %>
+<%= render 'form', cat: @cat %>
